@@ -1,4 +1,20 @@
-/*//font-family: 'Montserrat', sans-serif;*/
+
 * {
   background-color: orange;
+  font-family: 'Montserrat', sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
+#color-palette {
+  display: flex;
+}
+
+.color {
+  border: 2px solid black;
+  height: 200px;
+  margin: 7px 10px;
+  width: 175px;
 }
