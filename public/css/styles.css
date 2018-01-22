@@ -26,6 +26,7 @@ header {
   border: 2px solid black;
   height: 225px;
   margin: 7px 10px;
+  text-align: center;
   width: 200px;
 }
 
