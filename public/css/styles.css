@@ -21,12 +21,6 @@ header {
   flex-wrap: wrap;
 }
 
-#create-palette {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
 .color {
   background-color: gold;
   border: 2px solid black;
@@ -34,3 +28,10 @@ header {
   margin: 7px 10px;
   width: 200px;
 }
+
+#create-palette {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
