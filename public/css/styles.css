@@ -1,0 +1,37 @@
+
+* {
+  background-color: orange;
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+}
+
+header {
+  margin: 10px 0px;
+  text-align: center;
+}
+
+#logo {
+  height: 40px;
+  margin-left: 2px;
+  width: 60px;
+}
+
+#color-palette {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.color {
+  background-color: gold;
+  border: 2px solid black;
+  height: 225px;
+  margin: 7px 10px;
+  width: 200px;
+}
+
+#create-palette {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+

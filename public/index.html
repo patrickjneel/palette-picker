@@ -2,8 +2,31 @@
 <html>
 <head>
   <title>Palette Picker</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 </head>
 <body>
-
+  <header>
+    <h1>Palette Picker<span><img id="logo"src="pantone.svg" /></h1>
+  </header>
+  <section id="color-palette">
+    <div class="color">color 1</div>
+    <div class="color">color 2</div>
+    <div class="color">color 3</div>
+    <div class="color">color 4</div>
+    <div class="color">color 5</div>
+  </section>
+  <section id="create-palette">
+    <button id="generate-btn">
+      Generate New Palette
+    </button>
+    <input placeholder="Palette Name">
+    <button>Save Palette</button>
+  </section>
+  <section id="project-palette">
+    <h3>Create a New Project</h3>
+    <input placeholder="New Project Name" >
+  </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
