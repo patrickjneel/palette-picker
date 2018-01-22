@@ -11,3 +11,7 @@ app.locals.title = 'Palette-Picker';
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is listening at ${app.get('port')}`)
 })
+
+app.listen('/', (request, response) => {
+  response.send('Platte-Picker');
+});
