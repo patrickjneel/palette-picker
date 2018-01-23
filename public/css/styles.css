@@ -28,12 +28,13 @@ h1 {
 .color {
   align-items: flex-end;
   border: 2px solid black;
+  border-radius: 9px;
   display: flex;
-  height: 250px;
+  height: 285px;
   justify-content: center;
   margin: 7px 15px;
   text-align: center;
-  width: 237px;
+  width: 253px;
 }
 
 .unlocked {
