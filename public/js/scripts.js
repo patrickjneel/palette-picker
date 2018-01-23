@@ -1,8 +1,14 @@
 const generateColor = () => {
-  console.log('still working')
+  var length = 6;
+  var chars = '0123456789ABCDEF'
+  var hex = '#';
+  while(length--) hex += chars[(Math.random() * 16) | 0];
+  
+  return hex;
 }
 
-//a-f && 0-9
+
 
 $("#generate-btn").on('click', generateColor);
+
 
