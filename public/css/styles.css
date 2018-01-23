@@ -14,6 +14,14 @@ h1 {
   font-size: 54px;
 }
 
+.h1-first {
+  color: #4CD1E8;
+}
+
+.h1-second {
+  color: #FFCC72;
+}
+
 #logo {
   height: 60px;
   margin-left: 2px;
@@ -50,5 +58,13 @@ h1 {
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+#generate-btn {
+  border-radius: 9px;
+  font-size: 16px;
+  height: 40px;
+  margin: 15px 0px;
+  width: 215px;
 }
 
