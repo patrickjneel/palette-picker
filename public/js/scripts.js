@@ -8,11 +8,22 @@ const generateColor = () => {
 }
 
 const allColors = () => {
-  $("#color1").css("background-color", generateColor).text(generateColor)
-  $("#color2").css("background-color", generateColor).append(`<p class="hex-value">${generateColor()}</p>`)
-  $("#color3").css("background-color", generateColor)
-  $("#color4").css("background-color", generateColor)
-  $("#color5").css("background-color", generateColor)
+  const color1 = generateColor()
+  const color2 = generateColor()
+  const color3 = generateColor()
+  const color4 = generateColor()
+  const color5 = generateColor()
+
+  $("#color1").css("background-color", color1)
+  $(".hex1").text(color1);
+  $("#color2").css("background-color", color2)
+  $(".hex2").text(color2);
+  $("#color3").css("background-color", color3)
+  $(".hex3").text(color3);
+  $("#color4").css("background-color", color4)
+  $(".hex4").text(color4);
+  $("#color5").css("background-color", color5)
+  $(".hex5").text(color5);
 }
 
 const lockColor = () => {
