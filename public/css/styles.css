@@ -49,10 +49,22 @@ h1 {
 
 .unlocked {
   background-color: transparent;
+  background-image: url("images/unlocked.svg");
+  background-size: cover;
   display: flex;
   height: 45px;
   padding-bottom: 10px;
-  width: 45px;
+  width: 50px;
+}
+
+.locked {
+  display: none;
+  background-image: url("images/locked.svg");
+  background-image: cover;
+  /*display: flex;*/
+  height: 45px;
+  padding-bottom: 10px;
+  width: 50px;
 }
 
 #create-palette {

@@ -27,7 +27,7 @@ const allColors = () => {
 }
 
 const lockColor = () => {
-  console.log('locked')
+  $('.unlocked').toggleClass('locked').css("display", "flex")
 }
 
 $("#generate-btn").on('click', allColors);
