@@ -7,14 +7,14 @@ const generateColor = () => {
   return hex;
 }
 
+const allColors = () => {
+  $("#color1").css("background-color", generateColor())
+  $("#color2").css("background-color", generateColor())
+  $("#color3").css("background-color", generateColor())
+  $("#color4").css("background-color", generateColor())
+  $("#color5").css("background-color", generateColor())  
+}
+
+$("#generate-btn").on('click', allColors);
 
 
-$("#generate-btn").on('click', () => {
-  $(".color").css("background-color", generateColor())
-});
-
-$("#color1").css("background-color", generateColor())
-$("#color2").css("background-color", generateColor())
-$("#color3").css("background-color", generateColor())
-$("#color4").css("background-color", generateColor())
-$("#color5").css("background-color", generateColor())
