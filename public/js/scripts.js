@@ -7,7 +7,7 @@ const generateColor = () => {
 }
 
 const allColors = () => {
-  $("#color1").css("background-color", generateColor)
+  $("#color1").css("background-color", generateColor).html(generateColor)
   $("#color2").css("background-color", generateColor)
   $("#color3").css("background-color", generateColor)
   $("#color4").css("background-color", generateColor)
