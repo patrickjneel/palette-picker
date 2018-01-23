@@ -78,3 +78,8 @@ h1 {
   width: 175px;
 }
 
+.hex-value {
+  display: flex;
+  justify-content: flex-start;
+}
+
