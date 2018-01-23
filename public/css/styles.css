@@ -34,11 +34,12 @@ h1 {
 }
 
 .color {
-  align-items: flex-end;
+  align-items: center;
   background-color: #FFF4F4;
   border: 2px solid black;
   border-radius: 9px;
   display: flex;
+  flex-direction: column;
   height: 285px;
   justify-content: center;
   margin: 7px 15px;
@@ -50,7 +51,7 @@ h1 {
   background-color: transparent;
   display: flex;
   height: 45px;
-  padding-bottom: 45px;
+  padding-bottom: 10px;
   width: 45px;
 }
 
@@ -79,7 +80,7 @@ h1 {
 }
 
 .hex-value {
-  display: flex;
-  justify-content: flex-start;
+  background-color: transparent;
+  /*text-shadow: 2px 2px gray;*/
 }
 
