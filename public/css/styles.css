@@ -26,12 +26,22 @@ h1 {
 }
 
 .color {
-  /*background-color: #172860;*/
+  align-items: flex-end;
   border: 2px solid black;
+  display: flex;
   height: 250px;
+  justify-content: center;
   margin: 7px 15px;
   text-align: center;
   width: 237px;
+}
+
+.unlocked {
+  background-color: transparent;
+  display: flex;
+  height: 45px;
+  padding-bottom: 15px;
+  width: 45px;
 }
 
 #create-palette {
