@@ -1,3 +1,5 @@
+
+
 const generateColor = () => {
   var length = 6;
   var chars = '0123456789ABCDEF';
@@ -26,11 +28,14 @@ const allColors = () => {
   $(".hex5").text(color5);
 }
 
-const lockColor = () => {
-  $('.unlocked').toggleClass('locked').css("display", "flex")
+const lockColor = (event) => {
+  $(event.target).toggleClass('locked').css("display", "flex")
 }
 
 $("#generate-btn").on('click', allColors);
-$(".unlocked").on('click', lockColor);
+$(".unlocked").on('click', (event) => lockColor(event));
 
+$(document).ready(() => {
+  allColors()
+});
 
