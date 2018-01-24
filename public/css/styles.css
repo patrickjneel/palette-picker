@@ -123,7 +123,7 @@ h1 {
 #project-palette {
   display: flex;
   flex-direction: row;
-  margin: 0px 30px;
+  margin: 15px 30px;
 }
 
 #save-project {
@@ -155,7 +155,7 @@ h1 {
   border-radius: 9px;
   font-size: 17px;
   height: 25px;
-  margin-bottom: 10px;
+  margin: 7px;
   text-align: center;
   width: 275px;
 }
@@ -163,5 +163,32 @@ h1 {
 .bottom-tags {
   font-size: 29px;
   margin: 7px;
+  text-align: center;
+}
+
+#palette-name-input {
+  border: 1px solid black;
+  border-radius: 9px;
+  font-size: 17px;
+  height: 25px;
+  margin: 7px;
+  text-align: center;
+  width: 292px;
+}
+
+.temp-color {
+  background-color: red;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  height: 25px;
+  margin: 7px;
+  width: 25px;
+}
+
+.template-color-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
