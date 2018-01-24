@@ -192,3 +192,12 @@ h1 {
   justify-content: center;
 }
 
+.trash-btn {
+  background-image: url("images/garbage.svg");
+  background-size: 45px 65px;
+  display: flex;
+  height: 45px;
+  padding-bottom: 10px;
+  width: 50px;
+}
+
