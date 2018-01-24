@@ -3,11 +3,10 @@ $(document).ready(() => {
 });
 
 const generateColor = () => {
-
-  let length = 6;
+  let l = 6;
   let chars = '0123456789ABCDEF';
   let hex = '#';
-  while(length--) 
+  while(l--) 
     hex += chars[Math.floor(Math.random() * 16)];
   return hex;
 }
@@ -25,7 +24,7 @@ const allColors = () => {
 
 const lockColor = (event) => {
    $(event.target).toggleClass('locked').css("display", "flex");
-   $(event.target).parent('.color').toggleClass('selected')
+   $(event.target).parents('.color').toggleClass('selected')
 }
 
 $("#generate-btn").on('click', allColors);

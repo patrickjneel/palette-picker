@@ -31,20 +31,20 @@ h1 {
 #color-palette {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .color {
   align-items: center;
   background-color: #FFF4F4;
   border: 2px solid black;
-  border-radius: 9px;
+  border-radius: 25px;
   display: flex;
   flex-direction: column;
-  height: 285px;
-  justify-content: center;
-  margin: 7px 15px;
-  text-align: center;
-  width: 253px;
+  height: 400px;
+  justify-content: flex-end;
+  text-align: flex-end;
+  width: 225px;
 }
 
 .unlocked {
@@ -93,5 +93,13 @@ h1 {
 .hex-value {
   background-color: transparent;
   padding-top: 10px;
+}
+
+.card-bottom {
+  align-items: center;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
