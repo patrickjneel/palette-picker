@@ -1,5 +1,6 @@
 $(document).ready(() => {
   allColors()
+  fetchProjects()
 });
 
 const generateColor = () => {
@@ -47,12 +48,12 @@ const addProjectName = () => {
   //     </article>`
   
 
-// function fetchProjects() {
-//   console.log('hi')
-//   // const projectJson = await fetch('localhost:3000/api/v1/projects')
-//   // const projectData = await projectJson.json()
-//   // console.log(projectData)
-// }
+async function fetchProjects() {
+  console.log('hi')
+  const projectJson = await fetch('http://localhost:3000/api/v1/projects')
+  const projectData = await projectJson.json()
+  console.log(projectData)
+}
 
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
