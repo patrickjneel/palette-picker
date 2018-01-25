@@ -79,7 +79,18 @@ const postProject = async (projectName) => {
    }
 }
 
-const fetchPalettes = async (projects_id) => {
+const fetchPalettes = async (id) => {
+  try {
+    const paletteJson = await fetch(`/api/v1/projects/8/palettes`)
+    const paletteData = await paletteJson.json()
+    console.log(paletteData)
+
+  } catch (err) {
+
+  }
+}
+
+const postPalettes = async (projects_id) => {
   try {
     const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
       method: 'POST',
@@ -102,7 +113,7 @@ const deletePalette = () => {
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
-$('#save-palette-btn').on('click', addPalette);
+$('#save-palette-btn').on('click', fetchPalettes);
 $(".trash-can").on('click', deletePalette);
 
 
