@@ -33,4 +33,39 @@ app.get('/api/v1/projects', (request, response) => {
 
 app.post('/api/v1/projects', (request, response) => {
   const project = request.body;
+
+  for(let requiredParams of ['projectName']) {
+    if(!project[requiredParams]) {
+      return response.status(422).json({
+        error: `You are missing a required a field ${requiredParams}`
+      })
+    }
+  }
+    database('projects').insert(project, 'id')
+      .then(project => {
+        return response.status(201).json({ id: project[0] })
+      })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
+})
+
+app.post('/api/v1/projects/:id/palettes', (request, response) => {
+  const { id } = request.params;
+  const palette = Object.assign({}, request.body, {id: id});
+
+  for(let requiredParams of ['projects_id']) {
+    if(!palette[requiredParams]) {
+      return response.status(422).json({
+        error: `You are missing a required field ${requiredParams}`
+      })
+    }
+  }
+    database('palette').where('id', request.params.id).select()
+      .then(palette => {
+        return response.status(201).json({ id: palette[0] })
+      })
+      .catch(error => {
+        return response.status(500).json({ error })
+      })
 })
