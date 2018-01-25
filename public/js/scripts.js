@@ -36,9 +36,6 @@ const addProjectName = () => {
    postProject(projectName)
 }
 
-
-
-
 const fetchProjects = async () => {
   const projectJson = await fetch('/api/v1/projects')
   const projectData = await projectJson.json()
@@ -89,7 +86,8 @@ const palettesReduce = (paletteInfos) => {
 
 
 const addPalette = (palettes) => {
-  Object.keys(palettes).map(project => {
+  const paletteNames= Object.keys(palettes)
+    paletteNames.map(project => {
     palettes[project].map(palette => {
       createPalettes(palette)
     })
