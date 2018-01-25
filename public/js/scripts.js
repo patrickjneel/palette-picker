@@ -1,6 +1,7 @@
 $(document).ready(() => {
   allColors()
   fetchProjects()
+  fetchPalettes()
 });
 
 const generateColor = () => {
@@ -35,25 +36,8 @@ const addProjectName = () => {
    postProject(projectName)
 }
 
-const addPalette = () => {
-  let palette = $('#palette-name').val();
-  $('#palette-name').val('')
-  fetchPalettes(palette)
-}
-  // $('.project-templates').append(`
-  //   <article class="project-templates">
-  //       <span>Corgi Counter</span>
-  //       <div class="template-color-card">
-  //         <div>Trash 1</div>
-  //         <div class="temp-color"></div>
-  //         <div class="temp-color"></div>
-  //         <div class="temp-color"></div>
-  //         <div class="temp-color"></div>
-  //         <div class="temp-color"></div>
-  //         <img class="trash-can" src="/css/images/garbage.svg" />
-  //       </div>
-  //     </article>`
-  
+
+
 
 const fetchProjects = async () => {
   const projectJson = await fetch('/api/v1/projects')
@@ -79,35 +63,72 @@ const postProject = async (projectName) => {
    }
 }
 
-const fetchPalettes = async (id) => {
+const 
+
+const fetchPalettes = async () => {
   try {
-    const paletteJson = await fetch(`/api/v1/projects/8/palettes`)
+    const paletteJson = await fetch(`/api/v1/projects/palettes`)
     const paletteData = await paletteJson.json()
-    console.log(paletteData)
-
-  } catch (err) {
-
-  }
-}
-
-const postPalettes = async (projects_id) => {
-  try {
-    const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
-      method: 'POST',
-      body: JSON.stringify({projects_id}),
-      headers: {
-        'Content-Type': 'application/json'
+    const palettes =  paletteData.palette.reduce((accu, project) => {
+      if(!accu[project.projectName]) {
+        Object.assign(accu, {[project.projectName]: []})
+        accu[project.projectName].push(project)
+      } else {
+        accu[project.projectName].push(project)
       }
-    })
-      const paletteData = await postPalette.json()
-      return paletteData
+      return accu
+    }, {})
+     addPalette(palettes)
+  
   } catch (err) {
 
   }
 }
+
+const addPalette = (palettes) => {
+  Object.keys(palettes).map(project => {
+    palettes[project].map(palette => {
+      createPalettes(palette)
+    })
+  }) 
+}
+
+const createPalettes = (palette) =>  {
+    const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
+  $('#projects').append(
+    `<article class="project-templates" projectId=${palette.projects_id} paletteId=${id}>
+        <span>${projectName}</span>
+        <div class="template-color-card">
+          <div>${paletteName}</div>
+          <div class=temp-color>${color1}</div>
+          <div class=temp-color>${color1}</div>
+          <div class=temp-color>${color2}</div>
+          <div class=temp-color>${color3}</div>
+          <div class=temp-color>${color4}</div>
+          <div class=temp-color>${color5}</div>
+          <img class="trash-can" src="/css/images/garbage.svg" />
+        </div>
+      </article>`
+    )
+  }
+// const postPalettes = async (projects_id) => {
+//   try {
+//     const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
+//       method: 'POST',
+//       body: JSON.stringify({projects_id}),
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     })
+//       const paletteData = await postPalette.json()
+//       return paletteData
+//   } catch (err) {
+
+//   }
+// }
 
 const deletePalette = () => {
-  console.log('delete it')
+  // console.log('delete it')
 }
 
 $("#generate-btn").on('click', allColors);
