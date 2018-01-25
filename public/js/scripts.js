@@ -4,10 +4,10 @@ $(document).ready(() => {
 });
 
 const generateColor = () => {
-  let l = 6;
+  let length = 6;
   let chars = '0123456789ABCDEF';
   let hex = '#';
-  while(l--) 
+  while(length--) 
     hex += chars[Math.floor(Math.random() * 16)];
   return hex;
 }
@@ -89,16 +89,21 @@ const fetchPalettes = async (projects_id) => {
       }
     })
       const paletteData = await postPalette.json()
-      console.log(paletteData)
+      return paletteData
   } catch (err) {
 
   }
 }
 
+const deletePalette = () => {
+  console.log('delete it')
+}
+
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
-$('#save-palette-btn').on('click', addPalette)
+$('#save-palette-btn').on('click', addPalette);
+$(".trash-can").on('click', deletePalette);
 
 
 
