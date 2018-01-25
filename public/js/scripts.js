@@ -34,6 +34,12 @@ const addProjectName = () => {
    $('#palette-name-input').val('')
    postProject(projectName)
 }
+
+const addPalette = () => {
+  let palette = $('#palette-name').val();
+  $('#palette-name').val('')
+  fetchPalettes(palette)
+}
   // $('.project-templates').append(`
   //   <article class="project-templates">
   //       <span>Corgi Counter</span>
@@ -73,9 +79,26 @@ const postProject = async (projectName) => {
    }
 }
 
+const fetchPalettes = async (projects_id) => {
+  try {
+    const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
+      method: 'POST',
+      body: JSON.stringify({projects_id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      const paletteData = await postPalette.json()
+      console.log(paletteData)
+  } catch (err) {
+
+  }
+}
+
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
+$('#save-palette-btn').on('click', addPalette)
 
 
 
