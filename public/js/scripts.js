@@ -32,6 +32,7 @@ const addProjectName = () => {
   let projectName = $('#palette-name-input').val();
   $('#select-form').append(`<option>${projectName}</option>`)
    $('#palette-name-input').val('')
+   postProject(projectName)
 }
   // $('.project-templates').append(`
   //   <article class="project-templates">
@@ -48,11 +49,28 @@ const addProjectName = () => {
   //     </article>`
   
 
-async function fetchProjects() {
-  console.log('hi')
-  const projectJson = await fetch('http://localhost:3000/api/v1/projects')
+const fetchProjects = async () => {
+  const projectJson = await fetch('/api/v1/projects')
   const projectData = await projectJson.json()
-  console.log(projectData)
+  const projects = projectData.projects
+  projects.forEach(name => {
+    $('#select-form').append(`<option>${name.projectName}</option>`)
+  }) 
+}
+
+const postProject = async (projectName) => {
+  try {
+  const postProject = await fetch('/api/v1/projects', {
+    method: 'POST',
+    body: JSON.stringify({projectName}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+   const projectData = await postProject.json()
+      return projectData
+  } catch (err) {
+   }
 }
 
 $("#generate-btn").on('click', allColors);
