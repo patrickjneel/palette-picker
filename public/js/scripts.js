@@ -63,13 +63,19 @@ const postProject = async (projectName) => {
    }
 }
 
-const 
-
 const fetchPalettes = async () => {
   try {
     const paletteJson = await fetch(`/api/v1/projects/palettes`)
     const paletteData = await paletteJson.json()
-    const palettes =  paletteData.palette.reduce((accu, project) => {
+    const paletteInfos = paletteData.palette
+    palettesReduce(paletteInfos)
+  } catch (err) {
+
+  }
+}
+
+const palettesReduce = (paletteInfos) => {
+   const palettes =  paletteInfos.reduce((accu, project) => {
       if(!accu[project.projectName]) {
         Object.assign(accu, {[project.projectName]: []})
         accu[project.projectName].push(project)
@@ -79,11 +85,8 @@ const fetchPalettes = async () => {
       return accu
     }, {})
      addPalette(palettes)
-  
-  } catch (err) {
-
-  }
 }
+
 
 const addPalette = (palettes) => {
   Object.keys(palettes).map(project => {
