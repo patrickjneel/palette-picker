@@ -50,6 +50,24 @@ app.post('/api/v1/projects', (request, response) => {
       })
 })
 
+app.get('/api/v1/projects/:id/palettes', (request, response) => {
+  const { id } = request.params;
+  // const palette = request.body;
+  database('palette').where('projects_id', id).select()
+      .then(palette => {
+        if(palette.length) {
+        return response.status(200).json({ palette }) 
+      } else {
+        return response.status(404).json({
+          error: `Could not find the palette with a project id of ${id}`
+        })
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error })
+    })
+})
+
 app.post('/api/v1/projects/:id/palettes', (request, response) => {
   const { id } = request.params;
   const palette = Object.assign({}, request.body, {id: id});

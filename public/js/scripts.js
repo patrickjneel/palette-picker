@@ -4,10 +4,10 @@ $(document).ready(() => {
 });
 
 const generateColor = () => {
-  let l = 6;
+  let length = 6;
   let chars = '0123456789ABCDEF';
   let hex = '#';
-  while(l--) 
+  while(length--) 
     hex += chars[Math.floor(Math.random() * 16)];
   return hex;
 }
@@ -33,6 +33,12 @@ const addProjectName = () => {
   $('#select-form').append(`<option>${projectName}</option>`)
    $('#palette-name-input').val('')
    postProject(projectName)
+}
+
+const addPalette = () => {
+  let palette = $('#palette-name').val();
+  $('#palette-name').val('')
+  fetchPalettes(palette)
 }
   // $('.project-templates').append(`
   //   <article class="project-templates">
@@ -73,9 +79,42 @@ const postProject = async (projectName) => {
    }
 }
 
+const fetchPalettes = async (id) => {
+  try {
+    const paletteJson = await fetch(`/api/v1/projects/8/palettes`)
+    const paletteData = await paletteJson.json()
+    console.log(paletteData)
+
+  } catch (err) {
+
+  }
+}
+
+const postPalettes = async (projects_id) => {
+  try {
+    const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
+      method: 'POST',
+      body: JSON.stringify({projects_id}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      const paletteData = await postPalette.json()
+      return paletteData
+  } catch (err) {
+
+  }
+}
+
+const deletePalette = () => {
+  console.log('delete it')
+}
+
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
+$('#save-palette-btn').on('click', fetchPalettes);
+$(".trash-can").on('click', deletePalette);
 
 
 
