@@ -57,6 +57,7 @@ const postProject = async (projectName) => {
    const projectData = await postProject.json()
       return projectData
   } catch (err) {
+    throw err;
    }
 }
 
@@ -67,7 +68,7 @@ const fetchPalettes = async () => {
     const paletteInfos = paletteData.palette
     palettesReduce(paletteInfos)
   } catch (err) {
-
+    throw err;
   }
 }
 
@@ -95,6 +96,7 @@ const addPalette = (palettes) => {
 }
 
 const createPalettes = (palette) =>  {
+  console.log(palette)
     const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
   $('#projects').append(
     `<article class="project-templates" projectId=${palette.projects_id} paletteId=${id}>
@@ -112,21 +114,38 @@ const createPalettes = (palette) =>  {
       </article>`
     )
   }
-// const postPalettes = async (projects_id) => {
-//   try {
-//     const postPalette = await fetch(`/api/v1/projects/:id/palettes`, {
-//       method: 'POST',
-//       body: JSON.stringify({projects_id}),
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     })
-//       const paletteData = await postPalette.json()
-//       return paletteData
-//   } catch (err) {
 
-//   }
-// }
+const savePalette = () => {
+  const paletteName = $('#palette-name').val()
+  const projectName = $('#select-form').val();
+  const
+  const palColors = {
+    color1: $('.hex1').text(),
+    color2: $('.hex2').text(),
+    color3: $('.hex3').text(),
+    color4: $('.hex4').text(),
+    color5: $('.hex5').text()
+  }
+  const fullPalette = {paletteName, projectName, ...palColors}
+  postPalette(fullPalette)
+}
+
+const postPalette = async (palette) => {
+  console.log(palette)
+  try {
+    const postPalette = await fetch(`/api/v1/projects/${projects_id}/palettes`, {
+      method: 'POST',
+      body: JSON.stringify({ palette }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      const paletteData = await postPalette.json()
+      return paletteData
+  } catch (err) {
+    return err
+  }
+}
 
 const deletePalette = () => {
   // console.log('delete it')
@@ -135,8 +154,8 @@ const deletePalette = () => {
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
-$('#save-palette-btn').on('click', fetchPalettes);
-$(".trash-can").on('click', deletePalette);
+$('#save-palette-btn').on('click', savePalette);
+$('.trash-can').on('click', deletePalette);
 
 
 
