@@ -42,6 +42,7 @@ const fetchProjects = async () => {
   const projects = projectData.projects
   projects.forEach(name => {
     $('#select-form').append(`<option>${name.projectName}</option>`)
+
   }) 
 }
 
@@ -116,7 +117,34 @@ const createPalettes = (palette, index) =>  {
     $(`#${paletteName}-${index}-3`).css('background-color', color3)
     $(`#${paletteName}-${index}-4`).css('background-color', color4)
     $(`#${paletteName}-${index}-5`).css('background-color', color5)
+    
   }
+
+  // const addDomPalette = () => {
+  //   const paletteName = $('#palette-name').val();
+  //   const projectName = $('#select-form').val();
+  //   const color1 = $('.hex1').text()
+  //   const color2 = $('.hex2').text()
+  //   const color3 = $('.hex3').text()
+  //   const color4 = $('.hex4').text()
+  //   const color5 = $('.hex5').text()    
+  //   $('#projects').append(`
+  //     <article class="project-templates">
+  //       <span>${projectName}</span>
+  //       <div class="template-color-card">
+  //         <div>${paletteName}</div>
+  //         <div class='hex1'>${color1}</div>
+  //         <div class='hex2'>${color2}</div>
+  //         <div class='hex3'>${color3}</div>
+  //         <div class='hex4'>${color4}</div>
+  //         <div class='hex5'>${color5}</div>
+  //         <img class="trash-can" src="/css/images/garbage.svg" />
+  //       </div>
+  //     </article>
+  //   `)
+      
+  //     $('#palette-name').val('');
+  // }
 
 const savePalette = () => {
   const paletteName = $('#palette-name').val()
@@ -143,11 +171,11 @@ const postPalette = async (palette) => {
       }
     })
       const paletteData = await postPalette.json()
-      console.log(paletteData)
       return paletteData
   } catch (err) {
     return err
   }
+
 }
 
 const deletePalette = () => {
@@ -158,6 +186,7 @@ $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
 $('#save-palette-btn').on('click', savePalette);
+// $('#save-palette-btn').on('click', addDomPalette)
 $('.trash-can').on('click', deletePalette);
 
 
