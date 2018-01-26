@@ -134,20 +134,20 @@ const createPalettes = (palette, index) =>  {
         <span>${projectName}</span>
         <div class="template-color-card">
           <div>${paletteName}</div>
-          <div class='hex1'>${color1}</div>
-          <div class='hex2'>${color2}</div>
-          <div class='hex3'>${color3}</div>
-          <div class='hex4'>${color4}</div>
-          <div class='hex5'>${color5}</div>
+          <div class='hex1' id="hex1">${color1}</div>
+          <div class='hex2'id="hex2">${color2}</div>
+          <div class='hex3' id="hex3">${color3}</div>
+          <div class='hex4' id="hex4">${color4}</div>
+          <div class='hex5' id="hex5">${color5}</div>
           <img class="trash-can" src="/css/images/garbage.svg" />
         </div>
       </article>
     `)
-      $('.hex1').css('background-color', color1)    
-      $('.hex2').css('background-color', color2)    
-      $('.hex3').css('background-color', color3)    
-      $('.hex4').css('background-color', color4)    
-      $('.hex5').css('background-color', color5)    
+      $('#hex1').css('background-color', color1)    
+      $('#hex2').css('background-color', color2)    
+      $('#hex3').css('background-color', color3)    
+      $('#hex4').css('background-color', color4)    
+      $('#hex5').css('background-color', color5)    
       
       $('#palette-name').val('');
   }
