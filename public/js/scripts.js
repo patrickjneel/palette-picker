@@ -91,12 +91,13 @@ const addPalette = (palettes) => {
   const paletteNames= Object.keys(palettes)
     paletteNames.map(project => {
     palettes[project].map((palette, index) => {
-      createPalettes(palette)
+      createPalettes(palette, index)
     })
   }) 
 }
 
 const createPalettes = (palette, index) =>  {
+  // console.log(palette)
     const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
   $('#projects').append(
     `<article class="project-templates" projectId=${palette.projects_id} paletteId=${id}>
@@ -120,31 +121,31 @@ const createPalettes = (palette, index) =>  {
     
   }
 
-  // const addDomPalette = () => {
-  //   const paletteName = $('#palette-name').val();
-  //   const projectName = $('#select-form').val();
-  //   const color1 = $('.hex1').text()
-  //   const color2 = $('.hex2').text()
-  //   const color3 = $('.hex3').text()
-  //   const color4 = $('.hex4').text()
-  //   const color5 = $('.hex5').text()    
-  //   $('#projects').append(`
-  //     <article class="project-templates">
-  //       <span>${projectName}</span>
-  //       <div class="template-color-card">
-  //         <div>${paletteName}</div>
-  //         <div class='hex1'>${color1}</div>
-  //         <div class='hex2'>${color2}</div>
-  //         <div class='hex3'>${color3}</div>
-  //         <div class='hex4'>${color4}</div>
-  //         <div class='hex5'>${color5}</div>
-  //         <img class="trash-can" src="/css/images/garbage.svg" />
-  //       </div>
-  //     </article>
-  //   `)
+  const addDomPalette = () => {
+    const paletteName = $('#palette-name').val();
+    const projectName = $('#select-form').val();
+    const color1 = $('.hex1').text()
+    const color2 = $('.hex2').text()
+    const color3 = $('.hex3').text()
+    const color4 = $('.hex4').text()
+    const color5 = $('.hex5').text()    
+    $('#projects').append(`
+      <article class="project-templates">
+        <span>${projectName}</span>
+        <div class="template-color-card">
+          <div>${paletteName}</div>
+          <div class='hex1'>${color1}</div>
+          <div class='hex2'>${color2}</div>
+          <div class='hex3'>${color3}</div>
+          <div class='hex4'>${color4}</div>
+          <div class='hex5'>${color5}</div>
+          <img class="trash-can" src="/css/images/garbage.svg" />
+        </div>
+      </article>
+    `)
       
-  //     $('#palette-name').val('');
-  // }
+      $('#palette-name').val('');
+  }
 
 const savePalette = () => {
   const paletteName = $('#palette-name').val()
@@ -178,16 +179,16 @@ const postPalette = async (palette) => {
 
 }
 
-const deletePalette = () => {
-  console.log('delete it')
+const deletePalette = (event) => {
+  event.target.closest('.trash-can').remove()
 }
 
 $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
 $('#save-palette-btn').on('click', savePalette);
-// $('#save-palette-btn').on('click', addDomPalette)
-$('.trash-can').on('click', deletePalette);
+$('#save-palette-btn').on('click', addDomPalette)
+$(".trash-can").on('click', (event) => deletePalette(event));
 
 
 
