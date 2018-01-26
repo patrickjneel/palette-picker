@@ -29,11 +29,11 @@ const lockColor = (event) => {
    $(event.target).parents('.color').toggleClass('selected')
 }
 
-const addProjectName = () => {
+const addProjectName = async () => {
+  const project = await postProject()
   let projectName = $('#palette-name-input').val();
-  $('#select-form').append(`<option>${projectName}</option>`)
+  $('.select-form').append(`<option data-projectId='${project.id}'>${projectName}</option>`)
    $('#palette-name-input').val('')
-   postProject(projectName)
 }
 
 const fetchProjects = async () => {
@@ -41,12 +41,13 @@ const fetchProjects = async () => {
   const projectData = await projectJson.json()
   const projects = projectData.projects
   projects.forEach(name => {
-    $('#select-form').append(`<option>${name.projectName}</option>`)
+    $('.select-form').append(`<option>${name.projectName}</option>`)
 
   }) 
 }
 
-const postProject = async (projectName) => {
+const postProject = async () => {
+  const projectName = $('#palette-name-input').val()
   try {
   const postProject = await fetch('/api/v1/projects', {
     method: 'POST',
@@ -56,7 +57,7 @@ const postProject = async (projectName) => {
     }
   })
    const projectData = await postProject.json()
-      return projectData
+     return projectData
   } catch (err) {
     throw err;
    }
@@ -97,7 +98,6 @@ const addPalette = (palettes) => {
 }
 
 const createPalettes = (palette, index) =>  {
-  // console.log(palette)
     const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
   $('#projects').append(
     `<article class="project-templates" projectId=${palette.projects_id} paletteId=${id}>
@@ -123,7 +123,7 @@ const createPalettes = (palette, index) =>  {
 
   const addDomPalette = () => {
     const paletteName = $('#palette-name').val();
-    const projectName = $('#select-form').val();
+    const projectName = $('.select-form').val();
     const color1 = $('.hex1').text()
     const color2 = $('.hex2').text()
     const color3 = $('.hex3').text()
@@ -143,15 +143,20 @@ const createPalettes = (palette, index) =>  {
         </div>
       </article>
     `)
+      $('.hex1').css('background-color', color1)    
+      $('.hex2').css('background-color', color2)    
+      $('.hex3').css('background-color', color3)    
+      $('.hex4').css('background-color', color4)    
+      $('.hex5').css('background-color', color5)    
       
       $('#palette-name').val('');
   }
 
 const savePalette = () => {
   const paletteName = $('#palette-name').val()
-  const projectName = $('#select-form').val();
-  const projects_id = $('.project-templates').attr('projectId')
-  const palColors = {
+  const projectName = $('.select-form').val();
+  const projects_id = $('.select-form').find(':selected').attr('data-projectId')
+ const palColors = {
     color1: $('.hex1').text(),
     color2: $('.hex2').text(),
     color3: $('.hex3').text(),
