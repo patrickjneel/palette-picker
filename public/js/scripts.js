@@ -91,14 +91,11 @@ const palettesReduce = (paletteInfos) => {
 
 
 const addPalette = (palettes) => {
-  console.log(palettes)
   const paletteNames= Object.keys(palettes)
     paletteNames.map(project => {
-      if(!paletteNames[project]) {
-        palettes[project].map((palette, index) => {
-          createPalettes(palette, index)
-        }) 
-      }
+    palettes[project].map((palette, index) => {
+      createPalettes(palette, index)
+    })
   }) 
 }
 
@@ -155,6 +152,7 @@ const createPalettes = (palette, index) =>  {
       $('#hex5').css('background-color', color5)    
       
       $('#palette-name').val('');
+      $('.select-form').val('Project Title')
   }
 
 const savePalette = () => {
