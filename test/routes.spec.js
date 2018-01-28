@@ -20,8 +20,31 @@ describe('Client Side Routes', () => {
       return error
     })
   })
+
+  it('should return a 404 if the route doesnt exist', () => {
+    return chai.request(server)
+    .get('/sad')
+    .then(response => {
+      response.should.have.status(404)
+    })
+    .catch(error => {
+      throw error;
+    })
+  })
 })
 
 describe('API Routes', () => {
-
+  it('should get all of the projects', () => {
+    return chai.request(server)
+    .get('/api/v1/projects')
+    .then(response => {
+      response.status.have.status(200)
+      response.should.be.json
+      response.body.should.be.a('object')
+      response.res.should.be.a('object')
+    })
+    .catch(error => {
+      return error
+    })
+  })
 })
