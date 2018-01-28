@@ -114,7 +114,7 @@ app.post('/api/v1/projects/:projectId/palettes', (request, response) => {
 })
 
 app.delete('/api/v1/projects/palettes/:id', (request, response) => {
-  const id  = request.params;
+  const id = request.params;
 
   database('palette').where(id).del()
     .then(palette => {

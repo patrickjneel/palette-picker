@@ -133,7 +133,7 @@ h1 {
   width: 40%;
 }
 
-#projects {
+.projects {
   border-top: 2px solid black;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
@@ -189,7 +189,7 @@ h1 {
 .template-color-card {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .trash-can {

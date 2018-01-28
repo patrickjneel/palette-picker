@@ -91,17 +91,20 @@ const palettesReduce = (paletteInfos) => {
 
 
 const addPalette = (palettes) => {
+  console.log(palettes)
   const paletteNames= Object.keys(palettes)
     paletteNames.map(project => {
-    palettes[project].map((palette, index) => {
-      createPalettes(palette, index)
-    })
+      if(!paletteNames[project]) {
+        palettes[project].map((palette, index) => {
+          createPalettes(palette, index)
+        }) 
+      }
   }) 
 }
 
 const createPalettes = (palette, index) =>  {
     const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
-  $('#projects').append(
+  $('.projects').append(
     `<article class="project-templates" data-projectId=${palette.projects_id} paletteId=${id}>
         <span>${projectName}</span>
         <div class="template-color-card">
@@ -131,7 +134,7 @@ const createPalettes = (palette, index) =>  {
     const color3 = $('.hex3').text()
     const color4 = $('.hex4').text()
     const color5 = $('.hex5').text()    
-    $('#projects').append(`
+    $('.projects').append(`
       <article class="project-templates">
         <span>${projectName}</span>
         <div class="template-color-card">
@@ -158,7 +161,6 @@ const savePalette = () => {
   const paletteName = $('#palette-name').val()
   const projectName = $('.select-form').val();
   const projects_id = $('.select-form').find(':selected').attr('data-projectId')
-  console.log(projects_id)
  const palColors = {
     color1: $('.hex1').text(),
     color2: $('.hex2').text(),
@@ -171,7 +173,6 @@ const savePalette = () => {
 }
 
 const postPalette = async (palette) => {
-  console.log(palette)
   try {
     const postPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palettes`, {
       method: 'POST',
@@ -189,7 +190,7 @@ const postPalette = async (palette) => {
 }
 
 const deletePalette = (event) => {
-  const id = $(event.target).closest('.template-color-card').attr('paletteid')
+  const id = $(event.target).closest('.project-templates').attr('paletteid')
   console.log(id)
   fetch(`/api/v1/projects/palettes/${id}`, {
     method: 'DELETE'
@@ -205,4 +206,4 @@ $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
 $('#save-palette-btn').on('click', savePalette);
 $('#save-palette-btn').on('click', addDomPalette)
-$("#projects").on('click', '.trash-can', (event) => deletePalette(event));
+$(".projects").on('click', '.trash-can', (event) => deletePalette(event));
