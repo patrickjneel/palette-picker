@@ -32,6 +32,7 @@ const lockColor = (event) => {
 const addProjectName = async () => {
   const project = await postProject()
   let projectName = $('#palette-name-input').val();
+  console.log('project', project.id)
   $('.select-form').append(`<option data-projectId='${project.id}'>${projectName}</option>`)
    $('#palette-name-input').val('')
 }
@@ -41,7 +42,7 @@ const fetchProjects = async () => {
   const projectData = await projectJson.json()
   const projects = projectData.projects
   projects.forEach(name => {
-    $('.select-form').append(`<option>${name.projectName}</option>`)
+    $('.select-form').append(`<option data-projectId='${name.id}'>${name.projectName}</option>`)
 
   }) 
 }
@@ -57,6 +58,7 @@ const postProject = async () => {
     }
   })
    const projectData = await postProject.json()
+   console.log(projectData)
      return projectData
   } catch (err) {
     throw err;
@@ -100,7 +102,7 @@ const addPalette = (palettes) => {
 const createPalettes = (palette, index) =>  {
     const { projectName, paletteName, id, color1, color2, color3, color4, color5 } = palette;
   $('#projects').append(
-    `<article class="project-templates" projectId=${palette.projects_id} paletteId=${id}>
+    `<article class="project-templates" data-projectId=${palette.projects_id} paletteId=${id}>
         <span>${projectName}</span>
         <div class="template-color-card">
           <div>${paletteName}</div>
@@ -156,6 +158,7 @@ const savePalette = () => {
   const paletteName = $('#palette-name').val()
   const projectName = $('.select-form').val();
   const projects_id = $('.select-form').find(':selected').attr('data-projectId')
+  console.log(projects_id)
  const palColors = {
     color1: $('.hex1').text(),
     color2: $('.hex2').text(),
@@ -168,6 +171,7 @@ const savePalette = () => {
 }
 
 const postPalette = async (palette) => {
+  console.log(palette)
   try {
     const postPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palettes`, {
       method: 'POST',
@@ -185,7 +189,15 @@ const postPalette = async (palette) => {
 }
 
 const deletePalette = (event) => {
-  event.target.closest('.trash-can').remove()
+  const id = $(event.target).closest('.template-color-card').attr('paletteid')
+  console.log(id)
+  fetch(`/api/v1/projects/palettes/${id}`, {
+    method: 'DELETE'
+  })
+  .then(response => response.json())
+  .catch(error => console.log(error))
+
+  $(event.target).closest('.template-color-card').remove()
 }
 
 $("#generate-btn").on('click', allColors);
@@ -193,7 +205,4 @@ $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
 $('#save-palette-btn').on('click', savePalette);
 $('#save-palette-btn').on('click', addDomPalette)
-$(".trash-can").on('click', (event) => deletePalette(event));
-
-
-
+$("#projects").on('click', '.trash-can', (event) => deletePalette(event));

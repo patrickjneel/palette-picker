@@ -93,10 +93,9 @@ app.post('/api/v1/projects', (request, response) => {
       })
 })
 
-app.post('/api/v1/projects/:id/palettes', (request, response) => {
-  const { id } = request.params;
-  const palette = Object.assign({}, request.body.palette, {projects_id: id});
-  console.log(palette)
+app.post('/api/v1/projects/:projectId/palettes', (request, response) => {
+  const { projectId } = request.params;
+  const palette = Object.assign({}, request.body.palette, {projects_id: projectId});
 
   for(let requiredParams of ['projectName', 'paletteName', 'color1', 'color2', 'color3', 'color4','color5' ]) {
     if(!palette[requiredParams]) {
@@ -110,7 +109,20 @@ app.post('/api/v1/projects/:id/palettes', (request, response) => {
         return response.status(201).json({ id: palette[0] })
       })
       .catch(error => {
-      console.log(error)
         return response.status(500).json({ error })
       })
 })
+
+app.delete('/api/v1/projects/palettes/:id', (request, response) => {
+  const id  = request.params;
+
+  database('palette').where(id).del()
+    .then(palette => {
+      if(!palette) {
+        response.status(422).json({error: 'This palette does not exist'})
+      } else {
+        response.sendStatus(204);
+      }
+    })
+    .catch(error => response.status(500).json({ error}))
+});
