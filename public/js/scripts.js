@@ -67,7 +67,7 @@ const postProject = async () => {
 
 const fetchPalettes = async () => {
   try {
-    const paletteJson = await fetch(`/api/v1/projects/palettes`)
+    const paletteJson = await fetch(`/api/v1/palettes`)
     const paletteData = await paletteJson.json()
     const paletteInfos = paletteData.palette
     palettesReduce(paletteInfos)

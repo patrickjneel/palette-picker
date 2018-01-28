@@ -47,7 +47,7 @@ app.get('/api/v1/projects', (request, response) => {
 })
 
 //app.get is an endpoint that will get all of the palettes from the database
-app.get('/api/v1/projects/palettes', (request, response) => {
+app.get('/api/v1/palettes', (request, response) => {
   database('palette').select()
     .then(palette => {
       if(palette.length) {
