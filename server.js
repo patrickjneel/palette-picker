@@ -126,3 +126,6 @@ app.delete('/api/v1/projects/palettes/:id', (request, response) => {
     })
     .catch(error => response.status(500).json({ error}))
 });
+
+
+module.exports = app;

@@ -31,10 +31,10 @@ const lockColor = (event) => {
 
 const addProjectName = async () => {
   const project = await postProject()
-  let projectName = $('#palette-name-input').val();
+  let projectName = $('.palette-name-input').val();
   console.log('project', project.id)
   $('.select-form').append(`<option data-projectId='${project.id}'>${projectName}</option>`)
-   $('#palette-name-input').val('')
+   $('.palette-name-input').val('')
 }
 
 const fetchProjects = async () => {
@@ -48,7 +48,7 @@ const fetchProjects = async () => {
 }
 
 const postProject = async () => {
-  const projectName = $('#palette-name-input').val()
+  const projectName = $('.palette-name-input').val()
   try {
   const postProject = await fetch('/api/v1/projects', {
     method: 'POST',
@@ -124,7 +124,7 @@ const createPalettes = (palette, index) =>  {
   }
 
   const addDomPalette = () => {
-    const paletteName = $('#palette-name').val();
+    const paletteName = $('.palette-name').val();
     const projectName = $('.select-form').val();
     const color1 = $('.hex1').text()
     const color2 = $('.hex2').text()
@@ -151,12 +151,12 @@ const createPalettes = (palette, index) =>  {
       $('#hex4').css('background-color', color4)    
       $('#hex5').css('background-color', color5)    
       
-      $('#palette-name').val('');
+      $('.palette-name').val('');
       $('.select-form').val('Project Title')
   }
 
 const savePalette = () => {
-  const paletteName = $('#palette-name').val()
+  const paletteName = $('.palette-name').val()
   const projectName = $('.select-form').val();
   const projects_id = $('.select-form').find(':selected').attr('data-projectId')
  const palColors = {
@@ -194,7 +194,7 @@ const deletePalette = (event) => {
     method: 'DELETE'
   })
   .then(response => response.json())
-  .catch(error => console.log(error))
+  .catch(error => console.log(error)) 
 
   $(event.target).closest('.template-color-card').remove()
 }
@@ -203,5 +203,5 @@ $("#generate-btn").on('click', allColors);
 $(".unlocked").on('click', (event) => lockColor(event));
 $("#project-generate-btn").on('click', addProjectName);
 $('#save-palette-btn').on('click', savePalette);
-$('#save-palette-btn').on('click', addDomPalette)
+$('#save-palette-btn').on('click', addDomPalette);
 $(".projects").on('click', '.trash-can', (event) => deletePalette(event));
