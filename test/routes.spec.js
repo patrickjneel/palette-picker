@@ -1,18 +1,20 @@
+process.env.NODE_ENV = 'test';
+
 const chai = require('chai');
 const should = chai.should();
 const chaiHttp = require('chai-http');
 const server  = require('../server');
 const knex = require('../db/knex.js');
 
-const environment = process.env.NODE_ENV || 'test';
 
 chai.use(chaiHttp);
 
 describe('Client Side Routes', () => {
-  it('should return the homepage', () => {
+  it.only('should return the homepage', () => {
     return chai.request(server)
     .get('/')
     .then(response => {
+      console.log(response)
       response.should.have.status(200)
       response.should.be.html
     })
@@ -107,6 +109,7 @@ describe('API Routes', () => {
       color5: '#ffffff'
     })
     .then(response => {
+      console.log('hi')
       repsonse.should.have.status(201)
       response.body.should.be.a('object')
       response.body.should.have.property('projectName')
