@@ -81,7 +81,7 @@ h1 {
   width: 215px;
 }
 
-#palette-name {
+.palette-name {
   border: 1px solid black;
   border-radius: 9px;
   font-size: 17px;
@@ -133,7 +133,7 @@ h1 {
   width: 40%;
 }
 
-#projects {
+.projects {
   border-top: 2px solid black;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
@@ -189,11 +189,31 @@ h1 {
 .template-color-card {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-left: 10px
 }
 
 .trash-can {
   height: 25px;
+  margin-left: 20px;
   width: 25px;
+}
+
+.palette-card-name {
+  margin: 5px 10px;
+  text-align: left;
+ 
+}
+
+.project-templates {
+  display: flex;
+  flex-direction: column;
+}
+
+span {
+  font-size: 20px;
+  margin: 10px 10px;
+  text-align: left;
+
 }
 
