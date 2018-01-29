@@ -10,7 +10,7 @@ const knex = require('../db/knex.js');
 chai.use(chaiHttp);
 
 describe('Client Side Routes', () => {
-  it.only('should return the homepage', () => {
+  it('should return the homepage', () => {
     return chai.request(server)
     .get('/')
     .then(response => {

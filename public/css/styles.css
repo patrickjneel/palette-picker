@@ -10,16 +10,14 @@ header {
   text-align: center;
 }
 
-h1 {
-  font-size: 54px;
-}
-
 .h1-first {
   color: #B4B5AD;
+  font-size: 54px;
 }
 
 .h1-second {
   color: #354459;
+  font-size: 54px;
 }
 
 #logo {
