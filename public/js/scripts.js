@@ -171,6 +171,7 @@ const savePalette = () => {
 }
 
 const postPalette = async (palette) => {
+    console.log(palette.projects_id)
   try {
     const postPalette = await fetch(`/api/v1/projects/${palette.projects_id}/palettes`, {
       method: 'POST',
