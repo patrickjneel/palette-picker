@@ -104,8 +104,8 @@ const createPalettes = (palette, index) =>  {
   $('.projects').append(
     `<article class="project-templates" data-projectId=${palette.projects_id} paletteId=${id}>
         <span>${projectName}</span>
+          <div class="palette-card-name">${paletteName}</div>
         <div class="template-color-card">
-          <div>${paletteName}</div>
           <div id='${paletteName}-${index}-1'>${color1}</div>
           <div id='${paletteName}-${index}-2'>${color2}</div>
           <div id='${paletteName}-${index}-3'>${color3}</div>
@@ -134,8 +134,8 @@ const createPalettes = (palette, index) =>  {
     $('.projects').append(`
       <article class="project-templates">
         <span>${projectName}</span>
+          <div class="palette-card-name">${paletteName}</div>
         <div class="template-color-card">
-          <div>${paletteName}</div>
           <div class='hex1' id="hex1">${color1}</div>
           <div class='hex2'id="hex2">${color2}</div>
           <div class='hex3' id="hex3">${color3}</div>
