@@ -12,7 +12,7 @@ const requireHTTPS = (req, res, next) => {
   next()
 }
 
-app.use(requireHTTPS);
+app.use(requireHTTPS)
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyParser.json());
